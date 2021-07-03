@@ -1,1 +1,2 @@
-# habit_tracker_frontend
+# Habit tracker frontend
+Frontend part for habit tracker.
