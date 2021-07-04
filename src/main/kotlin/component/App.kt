@@ -155,7 +155,7 @@ class App : RComponent<AppProps, AppState>() {
                     }
                 }
             )
-            route("/character/addtodo/:number",
+            route("/character/:number/addtodo",
                 render={ route_props: RouteResultProps<RouteNumberResult> ->
                     val num = route_props.num()
                     val chosenCharacter = state.characters.firstOrNull { it.id == num }

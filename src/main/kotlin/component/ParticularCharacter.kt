@@ -131,7 +131,7 @@ val fParticularCharacter= functionalComponent<ParticularCharacterProps> { props 
                         navLink<RProps>("/character/${props.character.id}/adddaily"){+"Add daily"}
                     }
                     th {
-                        navLink<RProps>("/character/addtodo/${props.character.id}"){+"Add todo"}
+                        navLink<RProps>("/character/${props.character.id}/addtodo"){+"Add todo"}
                     }
                     th {
                         navLink<RProps>("/shop"){+"Shop for quest scrolls"}
