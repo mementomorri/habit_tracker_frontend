@@ -1,13 +1,13 @@
 package component
 
+import kotlinx.html.ButtonType
 import kotlinx.html.InputType
+import kotlinx.html.id
+import kotlinx.html.option
 import react.RBuilder
 import react.RProps
 import react.child
-import react.dom.div
-import react.dom.form
-import react.dom.input
-import react.dom.label
+import react.dom.*
 import react.functionalComponent
 
 interface AddTaskProps: RProps{
@@ -16,37 +16,47 @@ interface AddTaskProps: RProps{
 }
 
 val fAddTask= functionalComponent<AddTaskProps> { props ->
-    div {
+    div("divWithPadding") {
         +"Let's add new ${props.taskType.lowercase()}"
-        form {
-            label{
-                +"Name:"
-                attrs.htmlFor="tName"
+        fieldset {
+            +"Name of ${props.taskType.lowercase()}:"
+            input {
+                attrs.type = InputType.text
+                attrs.id = "tName"
+                attrs.defaultValue = "Walk with a cat early morning"
             }
-            input(InputType.text,name = "tName"){+"Walk with a cat early morning"}
-            label {
-                +"Description:"
-                attrs.htmlFor="tDescription"
+        }
+        fieldset {
+            +"Description:"
+            input {
+                attrs.type = InputType.text
+                attrs.id = "tDescription"
+                attrs.defaultValue = "Go outside with chonky boy"
             }
-            input(InputType.text, name = "tDescription"){+"Go outside with chonky boy"}
-            label {
-                +"Difficulty:"
-                attrs.htmlFor="tDiff"
+        }
+        fieldset {
+            +"Difficulty:"
+            select {
+                attrs.id = "tDiff"
+                option { +"VeryEasy" }
+                option { +"Easy" }
+                option { +"Medium" }
+                option { +"Hard" }
+                option { +"VeryHard" }
             }
-            input(InputType.radio, name="tDiff"){
-                +"VeryEasy"
-                +"Easy"
-                +"Medium"
-                +"Hard"
-                +"VeryHard"
-            }
-            if (props.taskType =="TODO"){
-                label {
-                    +"Deadline:"
-                    attrs.htmlFor="tDeadline"
+        }
+        if (props.taskType == "TODO") {
+            fieldset {
+                +"Deadline:"
+                input {
+                    attrs.type = InputType.date
+                    attrs.id = "tDeadline"
                 }
-                input(InputType.text, name="tDeadline"){+"12/21/277"}
             }
+        }
+        button {
+            attrs.type = ButtonType.submit
+            +"Add ${props.taskType.lowercase()}"
         }
     }
 }

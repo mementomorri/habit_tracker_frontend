@@ -119,6 +119,7 @@ class App : RComponent<AppProps, AppState>() {
                 render = { about() }
             )
             route("/character/:number",
+                exact=true,
                 render={ route_props: RouteResultProps<RouteNumberResult> ->
                         val num = route_props.num()
                         val chosenCharacter = state.characters.firstOrNull { it.id == num }
