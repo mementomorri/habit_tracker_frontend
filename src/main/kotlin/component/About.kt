@@ -3,17 +3,17 @@ package component
 import react.RBuilder
 import react.RProps
 import react.child
-import react.dom.div
-import react.dom.p
+import react.dom.*
 import react.functionalComponent
-
-const val aboutme = "I was solely created this app to just show what I can do as a junior developer, please don't judge too rough on me. "
+import react.router.dom.navLink
 
 val fAbout=
     functionalComponent<RProps> {
         div("divWithPadding") {
-            p {
-                +aboutme
+            span {
+                +"This app was solely designed to show what I can do as a junior developer, here is a link to my "
+                a("https://mementomorri.github.io") { +"portfolio" }
+                +"."
             }
         }
     }

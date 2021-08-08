@@ -1,6 +1,7 @@
 package component
 
 import data.Item
+import kotlinx.html.js.onClickFunction
 import react.RBuilder
 import react.RProps
 import react.child
@@ -9,6 +10,7 @@ import react.functionalComponent
 
 interface ShopProps : RProps {
     var shopStatus: Array<Item>
+    var buyItmen: (Item, Int) -> Unit
 }
 
 val fShop= functionalComponent<ShopProps> { props ->
@@ -29,6 +31,9 @@ val fShop= functionalComponent<ShopProps> { props ->
                     th {
                         +"Items left"
                     }
+                    th {
+                        +""
+                    }
                 }
             }
             tbody {
@@ -46,6 +51,14 @@ val fShop= functionalComponent<ShopProps> { props ->
                         td {
                             +item.quantity.toString()
                         }
+                        td {
+                            button {
+                                +"Buy"
+                                attrs.onClickFunction={
+                                    props.buyItmen(item, 3)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -54,7 +67,9 @@ val fShop= functionalComponent<ShopProps> { props ->
 }
 
 fun RBuilder.shop(
-    shopStatus: Array<Item>
+    shopStatus: Array<Item>,
+    buyItmen: (Item, Int) -> Unit
 )=child(fShop){
     attrs.shopStatus=shopStatus
+    attrs.buyItmen=buyItmen
 }
